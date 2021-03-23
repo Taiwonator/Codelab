@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: #0F0F0F;
+        height: 100vh;
+        padding: 5vw;
+    }
+
+    #container {
+        background-color: white;
+        display: flex;
+        width: 100%;
+        z-index: 1;
+        padding: 5vw;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-content: flex-start;
+    }
+
+    #container .box {
+        background-color: #0F0F0F;
+        height: 50px;
+        width: 50px;
+    }
+
+    .white {
+        background-color: white !important;
+    }
+
+    .black {
+        background-color: #0F0F0F !important;
+    }
+
+</style>
+</head>
+<body>
+    <div id="container">
+        
+    </div>
+
+    <script>
+        
+        const container = document.querySelector('#container')
+        container.onmousedown = function(e) {
+            // Makes sure it has actually be clicked and NOT a subitem
+            if(e.target === container) {
+                container.classList.toggle('black');
+                console.log("CONTAINER CLICKED");
+            }
+        }
+
+        var mouseDown = 0;
+        document.body.onmousedown = function() { 
+            mouseDown = 1;
+        }
+        document.body.onmouseup = function() {
+            mouseDown = 0;
+        }
+
+        function generateBoxes(n) {
+            for(var i = 0; i < n; i++) {
+                let box = document.createElement("div");
+                box.classList.add("box");
+
+                box.onmouseover = function() {
+                    if(mouseDown === 1) {
+                        box.classList.toggle('white');
+                    } 
+                }
+
+                box.onmousedown = function(e) {
+                    box.classList.toggle('white');
+                }
+
+                box.ondragstart = function() {
+                    return false;
+                }
+
+                container.appendChild(box);
+            }
+        }
+
+        generateBoxes(1000);
+        
+        
+
+    </script>
+</body>
+</html>

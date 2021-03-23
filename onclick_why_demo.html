@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Document</title>
+<style>
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: #0F0F0F;
+        height: 100vh;
+        padding: 5vw;
+    }
+
+    #color-pallet {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        margin: 1em;
+    }
+
+    #container {
+        background-color: white;
+        display: flex;
+        width: 100%;
+        z-index: 1;
+        padding: 5vw;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-content: flex-start;
+    }
+
+    .box, .color-box, #rubber {
+        background-color: #0F0F0F;
+        height: 50px;
+        width: 50px;
+        position: relative;
+    }
+
+
+    #rubber i {
+        color: white;
+        text-align: center;
+        width: 50%;
+        font-size: 30px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%)
+    }
+
+    .white {
+        background-color: white !important;
+    }
+
+    .black {
+        background-color: #0F0F0F !important;
+    }
+
+</style>
+</head>
+<body>
+    <div id="color-pallet">
+        <div id="rubber" class="color-box"><i><i class="fas fa-eraser"></i></i></div>
+    </div>
+
+    <div id="container">
+        
+    </div>
+
+    <script>
+        
+        const container = document.querySelector('#container')
+        container.onmousedown = function(e) {
+            // Makes sure it has actually be clicked and NOT a subitem
+            if(e.target === container) {
+                container.classList.toggle('black');
+                console.log("CONTAINER CLICKED");
+            }
+        }
+
+        var mouseDown = 0;
+        document.body.onmousedown = function() { 
+            mouseDown = 1;
+        }
+        document.body.onmouseup = function() {
+            mouseDown = 0;
+        }
+
+        function generateBoxes(n) {
+            for(var i = 0; i < n; i++) {
+                let box = document.createElement("div");
+                box.classList.add("box");
+
+                box.onmouseover = function() {
+                    if(mouseDown === 1) {
+                        box.classList.toggle('white');
+                    } 
+                }
+
+                box.onmousedown = function(e) {
+                    box.classList.toggle('white');
+                }
+
+                box.ondragstart = function() {
+                    return false;
+                }
+
+                container.appendChild(box);
+            }
+        }
+
+        generateBoxes(1000);
+        
+        const colorPallet = document.getElementById('color-pallet');
+        var selectedColor;
+
+        const colors = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', 
+		  '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
+		  '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', 
+		  '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
+		  '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', 
+		  '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399',
+		  '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680', 
+		  '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
+		  '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3', 
+		  '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
+        function generateColors(colors) {
+            const items = colors.map(color => {
+                let colorBox = document.createElement("div");
+                colorBox.classList.add("color-box");
+                
+                colorBox.onclick = function() {
+                    console.log(`The color: ${color} has been selected`);
+                    selectedColor = color;
+                }
+
+                colorBox.style.backgroundColor = color;
+
+                return colorBox;
+            })
+            
+            for(var i = 0; i < items.length; i++) {
+                let item = items[i];
+                colorPallet.prepend(item);
+            }
+
+            const rubber = document.querySelector('#rubber');
+            rubber.onclick = function() {
+                console.log("Rubber set");
+                selectedColor = container.style.backgroundColor;
+            }
+        }
+
+        generateColors(colors);
+
+        const boxes = document.getElementsByClassName("box");
+        for(var i = 0; i < boxes.length; i++) {
+            let box = boxes[i];
+            box.onmouseover = function() {
+                if(mouseDown === 1) {
+                    box.style.backgroundColor = selectedColor;
+                } 
+            }
+
+            box.onmousedown = function(e) {
+                box.style.backgroundColor = selectedColor;
+            }
+
+            box.ondragstart = function() {
+                return false;
+            }
+        }
+
+    </script>
+</body>
+</html>

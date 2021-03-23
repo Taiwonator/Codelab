@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src='example.js'></script>
+    <script>
+        console.log("I am an internal file");
+
+        // ------------------ JAVASCRIPT LESSON ----------------------
+
+        // VARIABLES
+        // var, let, const
+        // var name = prompt("What is your name");
+        // console.log("Hello", name, "nice to meet you"); // Old way (1)
+        // console.log("Hello " + name + " nice to meet you"); // Old way (2)
+        // console.log(`Hello ${name} nice to meet you`); // New way 
+
+        // ARRAYS
+        // for, while, manipulation, map...
+        // var empty = [];
+        // const numbers = [1, 2, 3];
+        // var random = [1, "Jeff", false];
+        // var cars = new Array("Saab","Volvo","BMW");
+
+        // for(var i = 0; i < numbers.length; i++) {
+        //     let number = numbers[i];
+        //     console.log(`This is ${number}`);
+        // }
+
+        // let j = 0;
+        // while (j < numbers.length) {
+        //     let number = numbers[j];
+        //     console.log(`This is ${number}`);
+        //     j++;
+        // }
+
+        // ADVANCED
+        // const names = ["Jim", "Hannah", "Bob"];
+        // console.log("names", names);
+
+        // const ids = names.map(name => {
+        //     let lastIndex = name.length - 1;
+        //     return `ID${name[0]}-${name[lastIndex]}#`;
+        // })
+        // console.log("ids", ids);
+
+        // let namesCopy = [...names];
+        // namesCopy = namesCopy.filter(name => name != "Jim");
+        // console.log("names without Jim", namesCopy);
+
+        // OBJECTS 
+        // One way of doing it
+        // var Animal = function(species, name) {
+        //     var obj = {};
+
+        //     obj.species = species;
+        //     obj.name = name;
+
+        //     obj.sleep = function() {
+        //         console.log(`${name} is now asleep`);
+        //     }
+
+        //     obj.changeName = function(newName) {
+        //         return Animal(species, newName);
+        //     } 
+            
+
+        //     return obj;
+        // }
+
+        // var tiger = Animal('tiger', 'tigger');
+        // tiger.sleep();
+        // tiger = tiger.changeName('Sleepy Head');
+        // console.log(tiger.name);
+
+        // Another way (in my opinion the cleaner of the 2)
+        // function Person(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.surname;
+
+        //     this.sleep = function(){
+        //         console.log(`${name} is now asleep`);
+        //     }
+
+        //     this.growUp = () => {
+        //         this.age++;
+        //     }
+
+        //     this.setSurname = (surname) => {
+        //         this.surname = surname;
+        //     }
+        // }
+        
+        // var jim = new Person('Jim', 27);
+        // jim.sleep();
+        // jim.growUp();
+        // jim.setSurname("Johnson");
+        // console.log(jim);
+
+         //CUSTOM FUNCTIONS 
+        
+        // ADVANCED OBJECTS
+
+        // DOM EVENTS
+
+        /* EXERCISES
+        -- 1) Ask the user for their name and output 'hello [name]'
+            HINT: use prompt
+
+        -- 2) Create a function which returns the average of a list of numbers
+            HINT:  function findAverage(list) {
+                        ...
+                        return average;
+                    }
+
+        -- 3) Create a HTML element and add an onclick event which changes the element's color
+            HINT: 
+
+        */
+
+
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: #0F0F0F;
+        height: 100vh;
+        padding: 5vw;
+    }
+
+    #container {
+        background-color: white;
+        display: flex;
+        height: 100%;
+        width: 100%;
+        z-index: 1;
+        padding: 5vw;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+    }
+
+    #container .box {
+        background-color: #0F0F0F;
+        height: 100px;
+        min-width: 100px;
+        /* flex: 1; */
+        margin: 1px;
+    }
+
+    .white {
+        background-color: white !important;
+    }
+
+    .black {
+        background-color: #0F0F0F !important;
+    }
+
+</style>
+</head>
+<body>
+
+    <div id="container">
+        <div class="box" ></div>
+        <div class="box" ></div>
+        <div class="box" ></div>
+        <div class="box" ></div>
+        <div class="box" ></div>    
+    </div>
+
+    <script>
+        
+        document.body.onclick = (e) => {
+            // Makes sure it has actually be clicked and NOT a subitem
+            if(e.target === document.body) { 
+                console.log(e);
+                document.body.classList.toggle("white");
+                console.log("BODY CLICKED");
+            }
+        }
+
+        const container = document.querySelector('#container')
+        container.onmousedown = function(e) {
+            // Makes sure it has actually be clicked and NOT a subitem
+            if(e.target === container) {
+                container.classList.toggle('black');
+                console.log("CONTAINER CLICKED");
+            }
+        }
+
+        const boxes = document.getElementsByClassName("box");
+        for(var i = 0; i < boxes.length; i++) {
+            let box = boxes[i];
+            box.onclick = function() {
+                box.classList.toggle('white');
+            }
+        }
+   
+        
+
+    </script>
+</body>
+</html>
